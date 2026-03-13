@@ -6,7 +6,6 @@ import { connectDB } from './lib/db.js'
 import {serve} from 'inngest/express'
 import { inngest, functions } from './lib/inngest.js'
 import { clerkMiddleware } from '@clerk/express'
-import { protectRoute } from './middleware/protectRoute.js'
 import chatRoutes from './routes/chatRoutes.js'
 import sessionRoutes from './routes/sessionRoutes.js'
 
@@ -25,15 +24,15 @@ app.get('/api', (req, res) => {
     res.status(200).json({message: 'Hello World'});
 })
 
-app.get('/video', protectRoute, (req, res) => {
-    res.status(200).json({ message: 'video info' });
-})
+app.get("/health", (_, res) => {
+    res.status(200).json({ msg: "api is up and running" });
+});
 
 //make app ready for production
 if(ENV.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get("/{*any}", (req, res) => {
+    app.get("/{*any}", (_, res) => {
         res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
     })
 }
