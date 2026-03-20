@@ -2,6 +2,8 @@
 
 Prep to Ace is a platform that helps programmers practice coding interviews. Users can choose a coding problem that creates a session that accommodates two individuals; one person acts as the interviewer and the other as the interviewee. Within this session, users can send chat messages, video call each other, and complete the coding problem.
 
+**Note: This project is not fully responsive.**
+
 ## Technologies
 - Node.js
 - TailwindCSS
